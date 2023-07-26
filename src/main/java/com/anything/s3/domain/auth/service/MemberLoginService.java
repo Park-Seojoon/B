@@ -3,6 +3,7 @@ package com.anything.s3.domain.auth.service;
 import com.anything.s3.domain.auth.entity.RefreshToken;
 import com.anything.s3.domain.auth.exception.DuplicatedEmailException;
 import com.anything.s3.domain.auth.exception.MisMatchPasswordException;
+import com.anything.s3.domain.auth.exception.UserNotFoundException;
 import com.anything.s3.domain.auth.presentation.dto.request.SignInRequest;
 import com.anything.s3.domain.auth.presentation.dto.response.SignInResponse;
 import com.anything.s3.domain.auth.repository.RefreshTokenRepository;
@@ -29,7 +30,7 @@ public class MemberLoginService {
     public SignInResponse execute(SignInRequest request) {
 
         Member member = memberRepository.findByEmail(request.getEmail())
-                .orElseThrow(DuplicatedEmailException::new);
+                .orElseThrow(UserNotFoundException::new);
 
         if(!passwordEncoder.matches(request.getPassword(), member.getPassword())) {
             throw new MisMatchPasswordException();
