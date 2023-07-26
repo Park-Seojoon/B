@@ -1,6 +1,7 @@
 package com.anything.s3.domain.article.entity;
 
 import com.anything.s3.domain.member.entity.Member;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,18 @@ public class Article {
 
     private int point;
 
+    private Boolean completed;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private Member doMember;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Member member;
+
+    public void updateDoIt(Member member) {
+        this.doMember = member;
+    }
 }

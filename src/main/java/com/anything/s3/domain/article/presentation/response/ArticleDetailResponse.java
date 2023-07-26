@@ -10,4 +10,5 @@ public class ArticleDetailResponse {
     private String title;
     private String content;
     private int point;
+    private Boolean completed;
 }

@@ -1,7 +1,6 @@
 package com.anything.s3.domain.article.presentation;
 
 import com.anything.s3.domain.article.presentation.request.CreateArticleRequest;
-import com.anything.s3.domain.article.presentation.request.EditArticleRequest;
 import com.anything.s3.domain.article.presentation.response.ArticleDetailResponse;
 import com.anything.s3.domain.article.presentation.response.ListArticleResponse;
 import com.anything.s3.domain.article.service.*;
@@ -27,6 +26,8 @@ public class UserArticleController {
 
     private final ArticleDetailService articleDetailService;
 
+    private final ArticleDoItService articleDoItService;
+
     @PostMapping
     public ResponseEntity<?> createArticle(@RequestPart("data") @Valid CreateArticleRequest articleRequest, @RequestPart("file") List<MultipartFile> files) {
         createArticleService.execute(articleRequest, files);
@@ -49,5 +50,11 @@ public class UserArticleController {
     public ResponseEntity<ArticleDetailResponse> getDetail(@PathVariable Long id) {
         ArticleDetailResponse detailResponse = articleDetailService.execute(id);
         return new ResponseEntity<>(detailResponse, HttpStatus.OK);
+    }
+
+    @PostMapping("/doit/{id}")
+    public ResponseEntity<Void> doItArticle(@PathVariable Long id) {
+        articleDoItService.execute(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

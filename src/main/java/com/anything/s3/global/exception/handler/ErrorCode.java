@@ -29,7 +29,8 @@ public enum ErrorCode {
     FAILED_UPLOAD_IMAGE("이미지 업로드에 실패했습니다", 500),
     FILE_UPLOAD_FAIL("파일 업로드에 실패했습니다.", 500),
     NOT_ALLOWED_FILE("허용되지 않은 파일 형식입니다.", 400),
-    INVALID_FORMAT_FILE("잘못된 형식의 파일입니다.", 400);
+    INVALID_FORMAT_FILE("잘못된 형식의 파일입니다.", 400),
+    NOT_PERMISSION_ME("자기 자신의 글은 신청할 수 없습니다.", 403);
 
     private final String message;
     private final int status;

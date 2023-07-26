@@ -22,6 +22,7 @@ public class ArticleDetailService {
                 .title(article.getTitle())
                 .content(article.getContent())
                 .point(article.getPoint())
+                .completed(article.getCompleted())
                 .build();
     }
 }
