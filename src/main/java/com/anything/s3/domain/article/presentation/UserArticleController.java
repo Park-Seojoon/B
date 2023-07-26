@@ -3,8 +3,10 @@ package com.anything.s3.domain.article.presentation;
 import com.anything.s3.domain.article.presentation.request.CreateArticleRequest;
 import com.anything.s3.domain.article.presentation.response.ArticleDetailResponse;
 import com.anything.s3.domain.article.presentation.response.ListArticleResponse;
+import com.anything.s3.domain.article.presentation.response.MyListArticleResponse;
 import com.anything.s3.domain.article.service.*;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +29,10 @@ public class UserArticleController {
     private final ArticleDetailService articleDetailService;
 
     private final ArticleDoItService articleDoItService;
+
+    private final MyArticleListService myArticleListService;
+
+    private final MyDoArticleListService myDoArticleListService;
 
     @PostMapping
     public ResponseEntity<?> createArticle(@RequestPart("data") @Valid CreateArticleRequest articleRequest, @RequestPart("file") List<MultipartFile> files) {
@@ -57,4 +63,18 @@ public class UserArticleController {
         articleDoItService.execute(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @GetMapping("/myList")
+    public ResponseEntity<MyListArticleResponse> getMyArticleList() {
+        var list = myArticleListService.execute();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("/doMyList")
+    public ResponseEntity<MyListArticleResponse> getMyDoArticleList() {
+        var list = myDoArticleListService.execute();
+        return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+
 }

@@ -38,4 +38,8 @@ public class Article {
     public void updateDoIt(Member member) {
         this.doMember = member;
     }
+
+    public void updateCompleted(Boolean completed) {
+        this.completed = completed;
+    }
 }

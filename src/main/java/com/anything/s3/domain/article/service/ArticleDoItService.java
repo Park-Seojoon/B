@@ -27,6 +27,7 @@ public class ArticleDoItService {
         }
 
         article.updateDoIt(member);
+        article.updateCompleted(true);
 
         articleRepository.save(article);
     }
