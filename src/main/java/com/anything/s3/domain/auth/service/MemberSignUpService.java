@@ -20,6 +20,10 @@ public class MemberSignUpService {
              throw new DuplicatedEmailException();
          }
 
+         if(!(request.getPassword().equals(request.getRePassword()))) {
+             throw new RuntimeException("비밀번호 일치 안함");
+         }
+
 
          Member member = Member.builder()
                  .email(request.getEmail())

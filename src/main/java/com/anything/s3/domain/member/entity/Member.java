@@ -1,6 +1,5 @@
 package com.anything.s3.domain.member.entity;
 
-import com.anything.s3.domain.member.entity.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,10 +20,10 @@ public class Member {
     private Long userId;
 
     @Column(nullable = false)
-    private String email;
+    private String name;
 
     @Column(nullable = false)
-    private String name;
+    private String email;
 
     @Column(nullable = false)
     private String password;
