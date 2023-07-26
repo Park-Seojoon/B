@@ -44,10 +44,8 @@ public class CreateArticleService {
         Article article = Article.builder()
                 .title(articleRequest.getTitle())
                 .content(articleRequest.getContent())
-                .name(member.getName())
                 .member(member)
-                .createdDate(LocalDateTime.now())
-                .editedDate(LocalDateTime.now())
+                .point(1000)
                 .build();
 
         articleRepository.save(article);

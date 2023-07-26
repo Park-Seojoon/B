@@ -11,11 +11,13 @@ import lombok.Getter;
 public class ArticleResponse {
 
     private String title;
+    private int point;
 
     public static ArticleResponse articleResponse(Article article) {
 
         return ArticleResponse.builder()
                 .title(article.getTitle())
+                .point(article.getPoint())
                 .build();
     }
 }

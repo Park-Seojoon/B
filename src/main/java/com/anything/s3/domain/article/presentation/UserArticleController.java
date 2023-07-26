@@ -25,8 +25,6 @@ public class UserArticleController {
 
     private final DeleteArticleService deleteArticleService;
 
-    private final EditArticleService editArticleService;
-
     private final ArticleDetailService articleDetailService;
 
     @PostMapping
@@ -45,12 +43,6 @@ public class UserArticleController {
     public ResponseEntity<?> deleteArticle(@PathVariable Long id) {
         deleteArticleService.execute(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
-
-    @PatchMapping("/{id}")
-    public ResponseEntity<?> edit(@PathVariable Long id, @RequestBody @Valid EditArticleRequest editArticleRequest) {
-        editArticleService.execute(id, editArticleRequest);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @GetMapping("/detail/{id}")

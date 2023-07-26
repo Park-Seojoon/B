@@ -21,7 +21,7 @@ public class ArticleDetailService {
         return ArticleDetailResponse.builder()
                 .title(article.getTitle())
                 .content(article.getContent())
-                .name(article.getName())
+                .point(article.getPoint())
                 .build();
     }
 }

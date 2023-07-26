@@ -1,6 +1,8 @@
 package com.anything.s3.domain.auth.service;
 
 import com.anything.s3.domain.auth.exception.DuplicatedEmailException;
+import com.anything.s3.domain.auth.exception.DuplicatedNameException;
+import com.anything.s3.domain.auth.exception.MisMatchPasswordException;
 import com.anything.s3.domain.auth.presentation.dto.request.SignUpRequest;
 import com.anything.s3.domain.member.entity.Member;
 import com.anything.s3.domain.member.repository.MemberRepository;
@@ -20,15 +22,20 @@ public class MemberSignUpService {
              throw new DuplicatedEmailException();
          }
 
+         if (memberRepository.existsByName(request.getName())) {
+             throw new DuplicatedNameException();
+         }
+
          if(!(request.getPassword().equals(request.getRePassword()))) {
-             throw new RuntimeException("비밀번호 일치 안함");
+             throw new MisMatchPasswordException();
          }
 
 
          Member member = Member.builder()
-                 .email(request.getEmail())
                  .name(request.getName())
+                 .email(request.getEmail())
                  .password(passwordEncoder.encode(request.getPassword()))
+                 .point(0)
                  .build();
 
          memberRepository.save(member);

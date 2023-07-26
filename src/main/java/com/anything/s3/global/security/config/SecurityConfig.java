@@ -39,7 +39,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/email/**").permitAll()
-                .requestMatchers("/user/**").hasAuthority("USER")
+                .requestMatchers("/user/**").authenticated()
                 .anyRequest().denyAll();
         http
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)

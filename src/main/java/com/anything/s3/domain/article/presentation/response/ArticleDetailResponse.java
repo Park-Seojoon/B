@@ -9,5 +9,5 @@ public class ArticleDetailResponse {
 
     private String title;
     private String content;
-    private String name;
+    private int point;
 }
