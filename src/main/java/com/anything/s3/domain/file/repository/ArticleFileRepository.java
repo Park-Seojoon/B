@@ -11,4 +11,6 @@ public interface ArticleFileRepository extends JpaRepository<ArticleFile, Long> 
     void deleteAllByArticle(Article article);
 
     List<ArticleFile> getBoardFileByArticleId(Long id);
+
+    ArticleFile getArticleFileByArticle(Article article);
 }
