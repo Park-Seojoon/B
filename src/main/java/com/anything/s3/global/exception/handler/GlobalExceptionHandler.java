@@ -19,14 +19,14 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorMessage> handleComprehensiveException(HttpServletRequest request, S3Exception e) {
         printError(request, e.getErrorCode().getStatus());
         ErrorMessage errorMessage = new ErrorMessage(e.getErrorCode().getStatus());
-        return new ResponseEntity<>(errorMessage, HttpStatusCode.valueOf(e.getErrorCode().getStatus()));
+        return new ResponseEntity<>(HttpStatusCode.valueOf(e.getErrorCode().getStatus()));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorMessage> handleValidException(HttpServletRequest request, MethodArgumentNotValidException e) {
         printError(request, 400);
         ErrorMessage errorMessage = new ErrorMessage(HttpStatus.BAD_REQUEST.value());
-        return new ResponseEntity<>(errorMessage, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
     private void printError(HttpServletRequest request, int status) {

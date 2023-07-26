@@ -1,10 +1,7 @@
 package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
-import com.anything.s3.domain.article.presentation.response.ArticleResponse;
-import com.anything.s3.domain.article.presentation.response.ArticlingResponse;
-import com.anything.s3.domain.article.presentation.response.ListArticleResponse;
-import com.anything.s3.domain.article.presentation.response.MyListArticleResponse;
+import com.anything.s3.domain.article.presentation.response.*;
 import com.anything.s3.domain.article.repository.ArticleRepository;
 import com.anything.s3.domain.member.entity.Member;
 import com.anything.s3.global.annotation.ReadOnlyService;
@@ -21,15 +18,15 @@ public class MyDoArticleListService {
     private final UserUtil util;
     private final ArticleRepository articleRepository;
 
-    public MyListArticleResponse execute() {
+    public DolistArticleResponse execute() {
         Member member = util.currentUser();
 
         List<Article> list = articleRepository.findByDoMember(member);
 
-        return MyListArticleResponse.builder()
+        return DolistArticleResponse.builder()
                 .boardList(
                         list.stream()
-                                .map(ArticlingResponse::articlingResponse)
+                                .map(DoArticlingResponses::doArticlingResponses)
                                 .collect(Collectors.toList())
                 )
                 .build();

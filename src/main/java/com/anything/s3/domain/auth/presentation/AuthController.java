@@ -4,10 +4,8 @@ import com.anything.s3.domain.auth.presentation.dto.request.SignInRequest;
 import com.anything.s3.domain.auth.presentation.dto.request.SignUpRequest;
 import com.anything.s3.domain.auth.presentation.dto.response.NewTokenResponse;
 import com.anything.s3.domain.auth.presentation.dto.response.SignInResponse;
-import com.anything.s3.domain.auth.service.MemberLoginService;
-import com.anything.s3.domain.auth.service.MemberLogoutService;
-import com.anything.s3.domain.auth.service.MemberSignUpService;
-import com.anything.s3.domain.auth.service.NewTokenService;
+import com.anything.s3.domain.auth.presentation.dto.response.UserInfoResponse;
+import com.anything.s3.domain.auth.service.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,6 +21,7 @@ public class AuthController {
         private final MemberLoginService loginService;
         private final MemberLogoutService logoutService;
         private final NewTokenService newTokenService;
+        private final GetUserInfoService getUserInfoService;
 
         @PostMapping("/signup")
         public ResponseEntity<?> signUp(@Valid @RequestBody SignUpRequest request) {
@@ -46,5 +45,11 @@ public class AuthController {
         public ResponseEntity<NewTokenResponse> reIssueToken(@RequestHeader("RefreshToken") String token) {
             NewTokenResponse newTokenResponse = newTokenService.execute(token);
             return new ResponseEntity<>(newTokenResponse, HttpStatus.OK);
+        }
+
+        @GetMapping("/info")
+        public ResponseEntity<UserInfoResponse> getInfo() {
+            UserInfoResponse response = getUserInfoService.execute();
+            return new ResponseEntity<>(response, HttpStatus.OK);
         }
 }

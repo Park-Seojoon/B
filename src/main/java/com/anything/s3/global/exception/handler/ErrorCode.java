@@ -31,7 +31,8 @@ public enum ErrorCode {
     FILE_UPLOAD_FAIL(500),
     NOT_ALLOWED_FILE(400),
     INVALID_FORMAT_FILE(400),
-    NOT_PERMISSION_ME(403);
+    NOT_PERMISSION_ME(403),
+    ALREADY_DO_IT_MEMBER(400);
 
     private final int status;
 }

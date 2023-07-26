@@ -1,5 +1,6 @@
 package com.anything.s3.domain.article.entity;
 
+import com.anything.s3.domain.article.entity.enums.IngType;
 import com.anything.s3.domain.member.entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -35,11 +36,21 @@ public class Article {
     @JoinColumn(name = "user_id")
     private Member member;
 
+    private String url;
+
+    @Enumerated(EnumType.STRING)
+    private IngType ingType;
+
     public void updateDoIt(Member member) {
         this.doMember = member;
     }
 
-    public void updateCompleted(Boolean completed) {
+    public void updateCompleted(Boolean completed, IngType type) {
         this.completed = completed;
+        this.ingType = type;
+    }
+
+    public void updateUrl(String url) {
+        this.url = url;
     }
 }

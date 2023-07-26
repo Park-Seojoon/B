@@ -2,6 +2,7 @@ package com.anything.s3.domain.article.presentation;
 
 import com.anything.s3.domain.article.presentation.request.CreateArticleRequest;
 import com.anything.s3.domain.article.presentation.response.ArticleDetailResponse;
+import com.anything.s3.domain.article.presentation.response.DolistArticleResponse;
 import com.anything.s3.domain.article.presentation.response.ListArticleResponse;
 import com.anything.s3.domain.article.presentation.response.MyListArticleResponse;
 import com.anything.s3.domain.article.service.*;
@@ -73,7 +74,7 @@ public class UserArticleController {
     }
 
     @GetMapping("/doMyList")
-    public ResponseEntity<MyListArticleResponse> getMyDoArticleList() {
+    public ResponseEntity<DolistArticleResponse> getMyDoArticleList() {
         var list = myDoArticleListService.execute();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }

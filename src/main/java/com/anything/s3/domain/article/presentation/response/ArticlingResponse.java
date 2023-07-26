@@ -13,6 +13,7 @@ public class ArticlingResponse {
     private String title;
     private int point;
     private Boolean completed;
+    private String url;
 
     public static ArticlingResponse articlingResponse(Article article) {
 
@@ -20,6 +21,7 @@ public class ArticlingResponse {
                 .title(article.getTitle())
                 .point(article.getPoint())
                 .completed(article.getCompleted())
+                .url(article.getUrl())
                 .build();
     }
 }

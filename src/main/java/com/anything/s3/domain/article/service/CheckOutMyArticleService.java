@@ -1,6 +1,7 @@
 package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
+import com.anything.s3.domain.article.entity.enums.IngType;
 import com.anything.s3.domain.article.exception.ArticleNotFoundException;
 import com.anything.s3.domain.article.exception.ArticleOwnerMismatchException;
 import com.anything.s3.domain.article.repository.ArticleRepository;
@@ -28,7 +29,7 @@ public class CheckOutMyArticleService {
             throw new ArticleOwnerMismatchException();
         }
 
-        article.updateCompleted(true);
+        article.updateCompleted(true, IngType.COMPLETED);
         articleRepository.save(article);
 
         Member doMember = article.getDoMember();

@@ -1,6 +1,7 @@
 package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
+import com.anything.s3.domain.article.entity.enums.IngType;
 import com.anything.s3.domain.article.exception.ExistTitleException;
 import com.anything.s3.domain.article.presentation.request.CreateArticleRequest;
 import com.anything.s3.domain.article.repository.ArticleRepository;
@@ -47,6 +48,8 @@ public class CreateArticleService {
                 .point(1000)
                 .completed(false)
                 .doMember(null)
+                .url(null)
+                .ingType(IngType.PROCEED)
                 .build();
 
         articleRepository.save(article);
@@ -60,6 +63,10 @@ public class CreateArticleService {
     }
 
     private ArticleFile saveToUrl(Article article, String uploadFileUrl) {
+
+        article.updateUrl(uploadFileUrl);
+
+        articleRepository.save(article);
 
         return ArticleFile.builder()
                 .article(article)

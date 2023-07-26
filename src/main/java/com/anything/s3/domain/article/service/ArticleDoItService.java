@@ -1,6 +1,8 @@
 package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
+import com.anything.s3.domain.article.entity.enums.IngType;
+import com.anything.s3.domain.article.exception.AlreadyDoItMemberException;
 import com.anything.s3.domain.article.exception.ArticleNotFoundException;
 import com.anything.s3.domain.article.exception.NoPermissionMyArticleException;
 import com.anything.s3.domain.article.repository.ArticleRepository;
@@ -26,8 +28,12 @@ public class ArticleDoItService {
             throw new NoPermissionMyArticleException();
         }
 
+        if (article.getCompleted()) {
+            throw new AlreadyDoItMemberException();
+        }
+
         article.updateDoIt(member);
-        article.updateCompleted(true);
+        article.updateCompleted(true, IngType.PROCEED);
 
         articleRepository.save(article);
     }
