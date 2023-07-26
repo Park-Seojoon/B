@@ -9,6 +9,7 @@ import com.anything.s3.domain.auth.repository.RefreshTokenRepository;
 import com.anything.s3.domain.member.entity.Member;
 import com.anything.s3.domain.member.repository.MemberRepository;
 import com.anything.s3.global.security.jwt.TokenProvider;
+import com.anything.s3.global.security.jwt.properties.JwtProperties;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class MemberLoginService {
     private final PasswordEncoder passwordEncoder;
     private final MemberRepository memberRepository;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final JwtProperties jwtProperties;
 
     @Transactional(rollbackFor = Exception.class)
     public SignInResponse execute(SignInRequest request) {
@@ -42,7 +44,8 @@ public class MemberLoginService {
         return SignInResponse.builder()
                 .accessToken(accessToken)
                 .refreshToken(refreshToken)
-                .expiredAt(tokenProvider.getExpiredAtToken())
+                .accessExpiredAt(tokenProvider.getExpiredAtToken())
+                .refreshExpiredAt(tokenProvider.getRefreshExpiredAtToken(refreshToken, jwtProperties.getRefreshSecret()))
                 .build();
     }
 }

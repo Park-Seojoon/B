@@ -104,4 +104,8 @@ public class TokenProvider {
     public ZonedDateTime getExpiredAtToken(String token, String secret) {
         return ZonedDateTime.now().plusSeconds(ACCESS_TOKEN_EXPIRE_TIME);
     }
+
+    public ZonedDateTime getRefreshExpiredAtToken(String token, String secret) {
+        return ZonedDateTime.now().plusSeconds(REFRESH_TOKEN_EXPIRE_TIME);
+    }
 }
