@@ -24,6 +24,7 @@ public class ArticleDetailService {
         ArticleFile articleFile = articleFileRepository.getArticleFileByArticle(article);
 
         return ArticleDetailResponse.builder()
+                .id(article.getId())
                 .title(article.getTitle())
                 .content(article.getContent())
                 .name(article.getMember().getName())

@@ -10,6 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ArticleResponse {
 
+    private Long id;
     private String title;
     private int point;
     private String url;
@@ -17,6 +18,7 @@ public class ArticleResponse {
     public static ArticleResponse articleResponse(Article article) {
 
         return ArticleResponse.builder()
+                .id(article.getId())
                 .title(article.getTitle())
                 .point(article.getPoint())
                 .url(article.getUrl())

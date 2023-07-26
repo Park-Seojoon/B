@@ -7,6 +7,7 @@ import lombok.*;
 @Builder
 public class ArticleDetailResponse {
 
+    private Long id;
     private String title;
     private String content;
     private String name;

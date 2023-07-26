@@ -32,7 +32,7 @@ public enum ErrorCode {
     NOT_ALLOWED_FILE(400),
     INVALID_FORMAT_FILE(400),
     NOT_PERMISSION_ME(403),
-    ALREADY_DO_IT_MEMBER(400);
+    ALREADY_DO_IT_MEMBER(409);
 
     private final int status;
 }
