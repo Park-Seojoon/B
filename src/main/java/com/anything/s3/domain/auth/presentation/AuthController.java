@@ -21,7 +21,6 @@ public class AuthController {
         private final MemberLoginService loginService;
         private final MemberLogoutService logoutService;
         private final NewTokenService newTokenService;
-        private final GetUserInfoService getUserInfoService;
 
         @PostMapping("/signup")
         public ResponseEntity<?> signUp(@Valid @RequestBody SignUpRequest request) {
@@ -47,9 +46,5 @@ public class AuthController {
             return new ResponseEntity<>(newTokenResponse, HttpStatus.OK);
         }
 
-        @GetMapping("/info")
-        public ResponseEntity<UserInfoResponse> getInfo() {
-            UserInfoResponse response = getUserInfoService.execute();
-            return new ResponseEntity<>(response, HttpStatus.OK);
-        }
+
 }
