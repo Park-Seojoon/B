@@ -34,6 +34,8 @@ public class UserArticleController {
 
     private final MyDoArticleListService myDoArticleListService;
 
+    private final CheckOutMyArticleService checkOutMyArticleService;
+
     @PostMapping
     public ResponseEntity<?> createArticle(@RequestPart("data") @Valid CreateArticleRequest articleRequest, @RequestPart("file") List<MultipartFile> files) {
         createArticleService.execute(articleRequest, files);
@@ -76,5 +78,9 @@ public class UserArticleController {
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
-
+    @PostMapping("/{id}/check")
+    public ResponseEntity<Void> checkOutMyArticle(@PathVariable Long id) {
+        checkOutMyArticleService.execute(id);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }

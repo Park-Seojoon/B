@@ -33,4 +33,10 @@ public class Member {
     public void updatePassword(String password) {
         this.password = password;
     }
+
+    public void updatePoint(int point) {
+        int tPoint = this.point;
+        tPoint += point;
+        this.point = tPoint;
+    }
 }
