@@ -10,8 +10,8 @@ import com.anything.s3.domain.file.exception.InvalidFormatFileException;
 import com.anything.s3.domain.file.exception.NotAllowedFileException;
 import com.anything.s3.global.annotation.RollbackService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -23,6 +23,7 @@ import java.util.UUID;
 
 @RollbackService
 @RequiredArgsConstructor
+@Slf4j
 public class ArticleFileService {
 
     @Value("${cloud.aws.s3.bucket}")
@@ -51,7 +52,11 @@ public class ArticleFileService {
 
             objectMetadata.setContentType(file.getContentType());
 
+            System.out.println(bucket + fileName);
+
             try(InputStream inputStream = file.getInputStream()) {
+
+
 
                 amazonS3.putObject(new PutObjectRequest(bucket, fileName, inputStream, objectMetadata)
                         .withCannedAcl(CannedAccessControlList.PublicRead));
