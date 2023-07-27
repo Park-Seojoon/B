@@ -24,7 +24,7 @@ public class ArticleDetailService {
                 .content(article.getContent())
                 .name(article.getMember().getName())
                 .point(article.getPoint())
-                .completed(article.getCompleted())
+                .myListIngType(article.getMyListIngType())
                 .url(article.getUrl())
                 .build();
     }

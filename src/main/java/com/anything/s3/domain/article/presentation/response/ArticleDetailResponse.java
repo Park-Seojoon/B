@@ -1,5 +1,6 @@
 package com.anything.s3.domain.article.presentation.response;
 
+import com.anything.s3.domain.article.entity.enums.MyListIngType;
 import lombok.*;
 
 @Getter
@@ -12,6 +13,6 @@ public class ArticleDetailResponse {
     private String content;
     private String name;
     private int point;
-    private Boolean completed;
+    private MyListIngType myListIngType;
     private String url;
 }

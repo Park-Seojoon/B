@@ -1,6 +1,7 @@
 package com.anything.s3.domain.article.entity;
 
 import com.anything.s3.domain.article.entity.enums.IngType;
+import com.anything.s3.domain.article.entity.enums.MyListIngType;
 import com.anything.s3.domain.member.entity.Member;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -25,7 +26,8 @@ public class Article {
 
     private int point;
 
-    private Boolean completed;
+    @Enumerated(EnumType.STRING)
+    private MyListIngType myListIngType;
 
     @JsonIgnore
     @ManyToOne
@@ -45,8 +47,8 @@ public class Article {
         this.doMember = member;
     }
 
-    public void updateCompleted(Boolean completed, IngType type) {
-        this.completed = completed;
+    public void updateCompleted(MyListIngType myListIngType, IngType type) {
+        this.myListIngType = myListIngType;
         this.ingType = type;
     }
 

@@ -14,7 +14,6 @@ public class DoArticlingResponses {
     private Long id;
     private String title;
     private int point;
-    private Boolean completed;
     private String url;
     private IngType ingType;
 
@@ -24,7 +23,6 @@ public class DoArticlingResponses {
                 .id(article.getId())
                 .title(article.getTitle())
                 .point(article.getPoint())
-                .completed(article.getCompleted())
                 .url(article.getUrl())
                 .ingType(article.getIngType())
                 .build();

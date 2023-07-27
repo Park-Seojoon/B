@@ -2,6 +2,7 @@ package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
 import com.anything.s3.domain.article.entity.enums.IngType;
+import com.anything.s3.domain.article.entity.enums.MyListIngType;
 import com.anything.s3.domain.article.exception.ExistTitleException;
 import com.anything.s3.domain.article.presentation.request.CreateArticleRequest;
 import com.anything.s3.domain.article.repository.ArticleRepository;
@@ -46,7 +47,7 @@ public class CreateArticleService {
                 .content(articleRequest.getContent())
                 .member(member)
                 .point(1000)
-                .completed(false)
+                .myListIngType(MyListIngType.NO)
                 .doMember(null)
                 .url(null)
                 .ingType(IngType.PROCEED)

@@ -2,6 +2,7 @@ package com.anything.s3.domain.article.service;
 
 import com.anything.s3.domain.article.entity.Article;
 import com.anything.s3.domain.article.entity.enums.IngType;
+import com.anything.s3.domain.article.entity.enums.MyListIngType;
 import com.anything.s3.domain.article.exception.ArticleNotFoundException;
 import com.anything.s3.domain.article.exception.ArticleOwnerMismatchException;
 import com.anything.s3.domain.article.repository.ArticleRepository;
@@ -10,6 +11,7 @@ import com.anything.s3.domain.member.repository.MemberRepository;
 import com.anything.s3.global.annotation.RollbackService;
 import com.anything.s3.global.util.UserUtil;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequiredArgsConstructor
 @RollbackService
@@ -25,11 +27,13 @@ public class CheckOutMyArticleService {
 
         Member member = util.currentUser();
 
-        if (!(article.getMember().equals(member))) {
+        System.out.println(article.getMember().equals(member));
+
+        if (!article.getMember().equals(member)) {
             throw new ArticleOwnerMismatchException();
         }
 
-        article.updateCompleted(true, IngType.COMPLETED);
+        article.updateCompleted(MyListIngType.COMPLETED, IngType.COMPLETED);
         articleRepository.save(article);
 
         Member doMember = article.getDoMember();
