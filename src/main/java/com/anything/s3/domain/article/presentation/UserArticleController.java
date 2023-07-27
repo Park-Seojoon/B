@@ -82,6 +82,6 @@ public class UserArticleController {
     @PostMapping("/{id}/check")
     public ResponseEntity<Void> checkOutMyArticle(@PathVariable Long id) {
         checkOutMyArticleService.execute(id);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

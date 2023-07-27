@@ -25,7 +25,7 @@ public class CheckOutMyArticleService {
 
         Member member = util.currentUser();
 
-        if (article.getMember().equals(member)) {
+        if (!(article.getMember().equals(member))) {
             throw new ArticleOwnerMismatchException();
         }
 
