@@ -64,7 +64,7 @@ public class CreateArticleService {
 
     private ArticleFile saveToUrl(Article article, String uploadFileUrl) {
 
-        article.updateUrl(uploadFileUrl);
+        article.updateUrl(AWS_S3_ADDRESS + uploadFileUrl);
 
         articleRepository.save(article);
 

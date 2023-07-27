@@ -11,6 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class DoArticlingResponses {
 
+    private Long id;
     private String title;
     private int point;
     private Boolean completed;
@@ -20,6 +21,7 @@ public class DoArticlingResponses {
     public static DoArticlingResponses doArticlingResponses(Article article) {
 
         return DoArticlingResponses.builder()
+                .id(article.getId())
                 .title(article.getTitle())
                 .point(article.getPoint())
                 .completed(article.getCompleted())

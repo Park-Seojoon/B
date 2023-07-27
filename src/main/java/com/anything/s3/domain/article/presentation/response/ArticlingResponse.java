@@ -10,6 +10,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ArticlingResponse {
 
+    private Long id;
     private String title;
     private int point;
     private Boolean completed;
@@ -18,6 +19,7 @@ public class ArticlingResponse {
     public static ArticlingResponse articlingResponse(Article article) {
 
         return ArticlingResponse.builder()
+                .id(article.getId())
                 .title(article.getTitle())
                 .point(article.getPoint())
                 .completed(article.getCompleted())
