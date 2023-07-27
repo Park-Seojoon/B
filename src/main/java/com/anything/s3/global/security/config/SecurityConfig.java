@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .requestMatchers("/auth/**").permitAll()
                 .requestMatchers("/email/**").permitAll()
+                .requestMatchers("/health").permitAll()
                 .requestMatchers("/user/**").authenticated()
                 .anyRequest().denyAll();
         http
