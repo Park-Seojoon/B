@@ -57,7 +57,8 @@ public class CreateArticleService {
         if(multipartFileList != null) {
             List<String> uploadFile = articleFileService.uploadFile(multipartFileList);
             for (String uploadFileUrl : uploadFile) {
-                articleFileRepository.save(saveToUrl(article, uploadFileUrl));
+                String resultUrl = uploadFileUrl.replaceFirst("^blohny", "");
+                articleFileRepository.save(saveToUrl(article, resultUrl));
             }
         }
     }
